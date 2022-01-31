@@ -73,13 +73,13 @@ You can test your Nginx server's configuration file before restarting or reloadi
 
 ## Switch between PHP versions on Ubuntu with Nginx
 
-Please use to below command:
+Please use the below command:
 
 `sudo update-alternatives --config php`
 
 After run above command select the PHP version that you need to use.
 
-**Note:** *Press to keep the current choice '*', or type selection number: For example 2*
+**Note:** *Press to keep the current choice *, or type selection number: For example 2*
 
 After switching below command used to restart the PHP and Nginx server.
 
