@@ -1,4 +1,4 @@
-# Ubuntu with Nginx useful commands
+# Nginx useful commands
 
 - [Start Nginx](#start-nginx)
 - [Stop Nginx](#stop-nginx)
