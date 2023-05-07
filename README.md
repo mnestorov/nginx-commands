@@ -1,4 +1,4 @@
-# Nginx useful commands
+# Nginx commands
 
 - [Start Nginx](#start-nginx)
 - [Stop Nginx](#stop-nginx)
@@ -10,6 +10,8 @@
 - [Check Nginx Version](#check-nginx-version)
 - [Show Command Help](#show-command-help)
 - [Switch Between PHP Versions on Ubuntu with Nginx](#switch-between-php-versions-on-ubuntu-with-nginx)
+
+---
 
 ## Start Nginx
 
@@ -95,3 +97,9 @@ After switching below command used to restart the PHP and Nginx server.
 `sudo service nginx restart`
 
 `sudo service php7.1-fpm or php7.2-fpm  restart`
+
+---
+
+## License
+
+This project is released under the MIT License.
