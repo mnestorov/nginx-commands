@@ -1,102 +1,271 @@
 # Nginx commands
 
+These list of Nginx commands should help you better understand and manage Nginx commands based on their functionality.
+
+## Starting and Stopping Nginx
+
 - [Start Nginx](#start-nginx)
 - [Stop Nginx](#stop-nginx)
-- [Quit Nginx](#quit-nginx)
 - [Restart Nginx](#restart-nginx)
 - [Reload Nginx](#reload-nginx)
-- [View Server Status](#view-server-status)
-- [Test Nginx Configuration](#test-nginx-configuration)
-- [Check Nginx Version](#check-nginx-version)
-- [Show Command Help](#show-command-help)
-- [Switch Between PHP Versions on Ubuntu with Nginx](#switch-between-php-versions-on-ubuntu-with-nginx)
+- [Quit Nginx](#quit-nginx)
+- [Check Nginx status](#check-nginx-status)
+
+## Configuration Management
+
+- [Reload Nginx configuration](#reload-nginx-configuration)
+- [Test Nginx configuration for syntax errors](#test-nginx-configuration-for-syntax-errors)
+- [Start Nginx with a custom configuration file](#start-nginx-with-a-custom-configuration-file)
+- [Start Nginx with a custom error log file](#start-nginx-with-a-custom-error-log-file)
+- [Start Nginx with a custom global configuration prefix](#start-nginx-with-a-custom-global-configuration-prefix)
+- [Set a custom worker process count](#set-a-custom-worker-process-count)
+
+## Logging and Monitoring
+
+- [View Nginx error logs](#view-nginx-error-logs)
+- [View Nginx access logs](#view-nginx-access-logs)
+- [Display active Nginx connections](#display-active-nginx-connections)
+
+## Process Management
+
+- [Display Nginx process ID (PID)](#display-nginx-process-id-pid)
+- [Send a signal to a specific Nginx process](#send-a-signal-to-a-specific-nginx-process)
+
+## Boot Configuration
+
+- [Enable Nginx auto-start at boot](#enable-nginx-auto-start-at-boot)
+- [Disable Nginx auto-start at boot](#disable-nginx-auto-start-at-boot)
+
+## Help and Version Information
+
+- [Display Nginx version and configuration options](#display-nginx-version-and-configuration-options)
+- [Display help information](#display-help-information)
+
+## Configuration File Management
+
+- [Create a temporary backup of the Nginx configuration](#create-a-temporary-backup-of-the-nginx-configuration)
+- [Restore a backup of the Nginx configuration](#restore-a-backup-of-the-nginx-configuration)
+- [Open the main Nginx configuration file with a text editor](#open-the-main-nginx-configuration-file-with-a-text-editor)
+- [Open a specific server block configuration file with a text editor](#open-a-specific-server-block-configuration-file-with-a-text-editor)
+- [Create a symbolic link to enable a server block](#create-a-symbolic-link-to-enable-a-server-block)
+- [Remove a symbolic link to disable a server block](#remove-a-symbolic-link-to-disable-a-server-block)
 
 ---
 
-## Start Nginx
+## Starting and Stopping Nginx
 
-`service nginx start`
+### Start Nginx
 
-If you're using a systemd based version such as Ubuntu Linux 16.04 LTS and above, use systemctl within the command, like so:
+```
+sudo nginx
+```
 
-`systemctl start nginx`
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-## Stop Nginx
+```
+sudo systemctl start nginx
+```
+
+### Stop Nginx
 
 Stopping Nginx will kill all system processes quickly. This will terminate Nginx even if there are open connections. 
 In order to do so, run one of the following commands:
 
-`service nginx stop`
+```
+sudo nginx -s stop
+```
 
-`systemctl stop nginx`
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-This command can still, however, take some time on busy servers. Therefore, if you want Nginx to stop even faster, you can also use:
+```
+sudo systemctl stop nginx
+```
 
-`killall -9 nginx`
+### Restart Nginx
 
-## Quit Nginx
+```
+sudo service nginx restart
+```
 
-Quitting Nginx is very similar to stopping it however it does so gracefully which means it will finish serving open connections before shutting down. To quit Nginx, use one of the following commands:
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-`service nginx quit`
+```
+sudo systemctl restart nginx
+```
 
-`systemctl quit nginx`
+### Reload Nginx
 
-## Restart Nginx
+```
+sudo nginx -s reload
+```
 
-Restarting Nginx basically performs a stop then a start. Use one of the following commands to run an Nginx restart:
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-`service nginx restart`
+```
+sudo systemctl reload nginx
+```
 
-`systemctl restart nginx`
+### Quit Nginx
 
-## Reload Nginx
+```
+sudo nginx -s quit
+```
 
-Reload is a bit different from restart in that, again, it is more gracefully. According to Nginx, reload is defined as "start the new worker process with a new configuration, gracefully shut down old worker processes.". You can reload Nginx by using one of the following commands:
+### Check Nginx status
 
-`service nginx reload`
+```
+sudo service nginx status
+```
 
-`systemctl reload nginx`
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-## View Server Status
+```
+sudo systemctl status nginx
+```
 
-Check what the current status of your Nginx web server is with one of the following commands:
+## Configuration Management
 
-`service nginx status`
+### Reload Nginx configuration
 
-`systemctl status nginx`
+```
+sudo nginx -s reload
+```
 
-## Test Nginx Configuration
+**For systemd (Ubuntu 16.04 LTS and above):**
 
-You can test your Nginx server's configuration file before restarting or reloading it completely.
+```
+sudo systemctl reload nginx
+```
 
-`nginx -t`
+### Test Nginx configuration for syntax errors
 
-## Check Nginx Version
+```
+sudo nginx -t
+```
 
-`service nginx -v`
+### Start Nginx with a custom configuration file
 
-`systemctl -v nginx`
+```
+sudo nginx -c /path/to/custom/nginx.conf
+```
 
-## Show Command Help
+### Start Nginx with a custom error log file
 
-`service nginx -h`
+```
+sudo nginx -e /path/to/custom/error.log
+```
 
-`systemctl -h nginx`
+### Start Nginx with a custom global configuration prefix
 
-## Switch Between PHP Versions on Ubuntu with Nginx
+```
+sudo nginx -p /path/to/custom/prefix
+```
 
-Please use the below command:
+### Set a custom worker process count
 
-`sudo update-alternatives --config php`
+```
+sudo nginx -g "worker_processes COUNT;"
+```
 
-After run above command select the PHP version that you need to use.
+## Logging and Monitoring
 
-After switching below command used to restart the PHP and Nginx server.
+### View Nginx error logs
 
-`sudo service nginx restart`
+```
+sudo tail -f /var/log/nginx/error.log
+```
 
-`sudo service php7.1-fpm or php7.2-fpm  restart`
+### View Nginx access logs
+
+```
+sudo tail -f /var/log/nginx/access.log
+```
+
+### Display active Nginx connections
+
+```
+sudo nginx -V 2>&1 | grep -o with-http_stub_status_module
+```
+
+## Process Management
+
+### Display Nginx process ID (PID)
+
+```
+sudo cat /run/nginx.pid
+```
+
+### Send a signal to a specific Nginx process
+
+```
+sudo kill -s SIGNAL PID
+```
+
+## Boot Configuration
+
+### Enable Nginx auto-start at boot
+
+```
+sudo systemctl enable nginx
+```
+
+### Disable Nginx auto-start at boot
+
+```
+sudo systemctl disable nginx
+```
+
+## Help and Version Information
+
+### Display Nginx version and configuration options
+
+```
+nginx -V
+```
+
+### Display help information
+
+```
+nginx -h
+```
+
+## Configuration File Management
+
+### Create a temporary backup of the Nginx configuration
+
+```
+sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.backup
+```
+
+### Restore a backup of the Nginx configuration
+
+```
+sudo cp /etc/nginx/nginx.conf.backup /etc/nginx/nginx.conf
+```
+
+### Open the main Nginx configuration file with a text editor
+
+```
+sudo nano /etc/nginx/nginx.conf
+```
+
+### Open a specific server block configuration file with a text editor
+
+```
+sudo nano /etc/nginx/sites-available/your_server_block
+```
+
+### Create a symbolic link to enable a server block
+
+```
+sudo ln -s /etc/nginx/sites-available/your_server_block /etc/nginx/sites-enabled/
+```
+
+### Remove a symbolic link to disable a server block
+
+```
+sudo rm /etc/nginx/sites-enabled/your_server_block
+```
 
 ---
 
