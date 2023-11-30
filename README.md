@@ -1,5 +1,9 @@
 # Nginx commands
 
+![Licence](https://img.shields.io/badge/Unlicense-red)
+
+## Overview
+
 These list of Nginx commands should help you better understand and manage Nginx commands based on their functionality.
 
 ## Starting and Stopping Nginx
@@ -271,4 +275,4 @@ sudo rm /etc/nginx/sites-enabled/your_server_block
 
 ## License
 
-This project is released under the MIT License.
+This repository is unlicense[d], so feel free to fork.
