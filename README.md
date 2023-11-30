@@ -1,4 +1,4 @@
-# Nginx commands
+# Nginx Commands
 
 ![Licence](https://img.shields.io/badge/Unlicense-red)
 
